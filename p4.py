@@ -232,10 +232,10 @@ from scipy.fft import fft
 
     
 # Transformada de Fourier
-senal_f = fft(senal_Tx)
+senal_f = fft(senal_Tx1 + senal_Tx2)
 
 # Muestras de la señal
-Nm = len(senal_Tx)
+Nm = len(senal_Tx1 + senal_Tx2)
 
 #Número de simbolos
 Ns = Nm // mpp
