@@ -223,3 +223,38 @@ ax.set_title('Recuperado')
 Fig.tight_layout()
 
 plt.imshow(imagen_Rx16)
+
+
+
+
+#PARTE 3. CALCULO DE LA DENSIDAD ESPECTRAL DE POTENCIA
+from scipy.fft import fft
+
+    
+# Transformada de Fourier
+senal_f = fft(senal_Tx)
+
+# Muestras de la señal
+Nm = len(senal_Tx)
+
+#Número de simbolos
+Ns = Nm // mpp
+
+#Tiempo del símbolo = periodo de la onda portadora
+Ts = 1 / fc
+
+#Tiempo entre muestras (período de muestreo)
+Tm = Ts / mpp
+
+#Tiempo de la simulación
+T = Ns * Ts
+
+#Espacio de frecuencias
+f = np.linspace(0.0, 1.0/(2.0*Tm),Nm//2)
+
+#Gráfica
+plt.plot(f, 2.0/Nm * np.power(np.abs(senal_f[0:Nm//2]),2))
+plt.xlim(0, 20000)
+plt.grid()
+plt.show()
+
